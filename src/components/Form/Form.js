@@ -2,14 +2,14 @@ import React from "react";
 import {useDispatch, useSelector } from "react-redux"; 
 import { nanoid } from 'nanoid'
 import { FormEl, Label, Button, Input } from '../App.styled'
-import { addContact } from "redux/slices";
-import { getContacts } from "redux/selector";
+import { addContact } from "redux/contacts/operations";
+import { getItems } from "redux/contacts/selector";
 
 
 export default function Form() {
   const id = nanoid();
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const items = useSelector(getItems);
 
   const handleSubmit = e => {
     e.preventDefault();   
@@ -19,7 +19,7 @@ export default function Form() {
       number: e.target.number.value.trim(),
     };
 
-    if (contacts.find(
+    if (items.find(
       contact => contact.name.toLowerCase() === data.name.toLowerCase()))
     { alert(`Contact ${data.name} ia already in phonebook`) }
     else {
