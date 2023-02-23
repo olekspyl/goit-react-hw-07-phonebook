@@ -5,15 +5,15 @@ import Filter from './Filter';
 import { Title, TitleContacts, TitleFind, WrapToFind } from './App.styled'
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {getError, getIsLoading } from 'redux/contacts/selector';
+import {selectError, selectIsLoading } from 'redux/contacts/selector';
 import { fetchContacts } from 'redux/contacts/operations';
 
 
 export default function App() {
 
   const dispatch = useDispatch();
-  const error = useSelector(getError);
-  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
 
   useEffect(() => {
@@ -24,8 +24,6 @@ export default function App() {
   return (
     <div>
       {isLoading && !error && <b>Request in progress...</b>}
-      {/* {error && <p>{error}</p>} */}
-      {<> 
         <Title>Phonebook</Title>
       <Form/>
       <TitleContacts>Contacts</TitleContacts>
@@ -34,7 +32,6 @@ export default function App() {
         <Filter/>
       </WrapToFind>
         <Contacts />
-      </>}
     </div>
   );
 };

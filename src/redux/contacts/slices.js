@@ -9,26 +9,20 @@ const persistConfig = {
 };
 
 const handlePending = state => {
-  state.contacts.isLoading = true;
+  state.isLoading = true;
 };
 const handleRejected = (state, action) => {
-  state.contacts.isLoading = false;
-  state.contacts.error = action.payload;
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
 export const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: {
-  contacts: {
-    items: [],
+  initialState:
+ {  items: [],
     isLoading: false,
     error: null
   },
-  filter: ""
-  },
-  reducers: {changeFilter(state, { payload }) {
-    state.filter = payload;
-    }},
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [addContact.pending]: handlePending,
@@ -38,31 +32,22 @@ export const contactsSlice = createSlice({
     [deleteContact.rejected]: handleRejected,
 
     [fetchContacts.fulfilled] (state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.contacts.items = action.payload;
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
     },
     [addContact.fulfilled](state, action) {
-            state.contacts.isLoading = false;
-            state.contacts.error = null;
-            state.contacts.items.push(action.payload);
+            state.isLoading = false;
+            state.error = null;
+            state.items.push(action.payload);
         },
-    // prepare: ({ id, name, number }) => {
-    //     return {
-    //       payload: {
-    //         id,
-    //         name,
-    //         number,
-    //       },
-    //     };
-    //   },
     [deleteContact.fulfilled] (state, action)  {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      const index = state.contacts.items.findIndex(
-                contact => contact.id === action.payload
+      state.isLoading = false;
+      state.error = null;
+      const index = state.items.findIndex(
+        contact => contact.id === action.payload.id
             );
-            state.contacts.items.splice(index, 1);
+            state.items.splice(index, 1);
     },
   },
   
@@ -70,7 +55,5 @@ export const contactsSlice = createSlice({
 }
 );
 
-
-export const {changeFilter} = contactsSlice.reducer;
 export const contactsReducer = persistReducer(persistConfig, contactsSlice.reducer);
 
