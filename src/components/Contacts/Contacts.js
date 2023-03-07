@@ -1,8 +1,10 @@
 import React from "react";
-import { useDispatch,  useSelector } from "react-redux";  
+import { useDispatch, useSelector } from "react-redux";  
+import { useEffect } from 'react';
 import { selectFilter, selectItems } from "redux/contacts/selector";
 import {deleteContact} from "redux/contacts/operations";
-import {ListItem, DeleteButton} from '../App.styled'
+import { ListItem, DeleteButton, TitleContacts } from '../App.styled'
+import { fetchContacts } from "redux/contacts/operations";
 
 
 
@@ -11,6 +13,9 @@ const Contacts = () => {
     const filter = useSelector(selectFilter);
     const dispatch = useDispatch();
   
+     useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
     
     const getVisibleContacts = () => {
         if (!items) {
@@ -22,6 +27,7 @@ const Contacts = () => {
     
     return (
         <>
+            <TitleContacts>Contacts</TitleContacts>
             {items.length === 0 && <p>Sorry, but you don't have any contacts</p>}
            <ul>
             {getVisibleContacts().map(({id, name, number}) => {

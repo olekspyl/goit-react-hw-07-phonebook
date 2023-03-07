@@ -1,37 +1,23 @@
 import React from 'react';
-import Form from './Form';
-import Contacts from './Contacts';
-import Filter from './Filter';
-import { Title, TitleContacts, TitleFind, WrapToFind } from './App.styled'
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {selectError, selectIsLoading } from 'redux/contacts/selector';
-import { fetchContacts } from 'redux/contacts/operations';
+import { Route, Routes } from 'react-router-dom';
+import ContactsPage from 'pages/ContactsPage';
+import LoginPage from 'pages/LoginPage';
+import RegisterPage from 'pages/RegisterPage';
+import HomePage from 'pages/HomePage';
+import Header from './Header';
 
 
 export default function App() {
-
-  const dispatch = useDispatch();
-  const error = useSelector(selectError);
-  const isLoading = useSelector(selectIsLoading);
-
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
-
   return (
-    <div>
-      {isLoading && !error && <b>Request in progress...</b>}
-        <Title>Phonebook</Title>
-      <Form/>
-      <TitleContacts>Contacts</TitleContacts>
-      <WrapToFind>
-        <TitleFind>Find contacts by name</TitleFind>
-        <Filter/>
-      </WrapToFind>
-        <Contacts />
-    </div>
+    <>
+      <Header/>
+      <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/contacts" element={<ContactsPage />} />
+      <Route path="*" element={<HomePage />} />
+      </Routes>
+ </>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux"; 
 import { selectFilter } from "redux/contacts/selector";
 import { changeFilter } from 'redux/contacts/filterSlice';
+import {TitleFind} from '../App.styled'
 
 
 const Filter = () => {
@@ -9,7 +10,9 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   
-  return (
+  return ( <>
+ 
+    <TitleFind>Find contacts by name</TitleFind>
     <label>
       <input
         type="text"
@@ -20,6 +23,7 @@ const Filter = () => {
         }
       />
     </label>
+     </>
   )
 };
 
