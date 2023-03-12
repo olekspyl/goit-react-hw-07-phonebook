@@ -33,7 +33,9 @@ const handleSubmit = e => {
         Password
             <input type="password" name="password" value={password} onChange={handleChange}/>
         </label>      
-        <button type="submit">Sign up</button>     
+          
+                <button type="submit">Log in</button>
+        
     </form>
     );
 }

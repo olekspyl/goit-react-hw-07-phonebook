@@ -10,8 +10,10 @@ const Header = () => {
 
     return (
         <>
-        <Title>Phonebook</Title>
-           {isLoggedIn ? <UserMenu /> : <AuthNav/>} 
+            <Title>Phonebook</Title>
+            <UserMenu />
+            <AuthNav/>
+           {/* {isLoggedIn ? <UserMenu /> : <AuthNav/>}  */}
         </>
     )
 }
