@@ -7,7 +7,8 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-const handleChange = ({ target: { name, value } }) => {
+    const handleChange = ({ target: { name, value } }) => {
+    // eslint-disable-next-line
         switch (name) {
             case 'email':
                 return setEmail(value);

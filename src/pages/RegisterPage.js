@@ -9,7 +9,8 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
 
 
-const handleChange = ({ target: { name, value } }) => {
+    const handleChange = ({ target: { name, value } }) => {
+    // eslint-disable-next-line
         switch (name) {
             case 'name':
                 return setName(value);

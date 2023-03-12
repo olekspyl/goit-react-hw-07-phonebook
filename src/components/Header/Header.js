@@ -11,9 +11,7 @@ const Header = () => {
     return (
         <>
             <Title>Phonebook</Title>
-            <UserMenu />
-            <AuthNav/>
-           {/* {isLoggedIn ? <UserMenu /> : <AuthNav/>}  */}
+           {isLoggedIn ? <UserMenu /> : <AuthNav/>} 
         </>
     )
 }
