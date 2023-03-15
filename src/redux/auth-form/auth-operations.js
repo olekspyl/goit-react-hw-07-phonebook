@@ -57,7 +57,7 @@ export const fetchCurrentUser = createAsyncThunk(
         const state = thunkAPI.getState();   
         const persistedToken = state.auth.token;
 
-        if (token === null) {
+        if (!token) {
             console.log("токен відсутній");
             return;
       }

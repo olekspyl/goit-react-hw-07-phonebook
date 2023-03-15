@@ -1,7 +1,7 @@
 import React from "react";
 import UserMenu from "components/UserMenu"
 import AuthNav from "components/AuthNav";
-import { Title } from "components/App.styled";
+import { Title, NavTitle } from "components/App.styled";
 import { useSelector } from "react-redux";
 import authSelectors from "redux/auth-form/auth-selectors";
 
@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
         <>
-            <Title>Phonebook</Title>
+            <Title><NavTitle to="/">Phonebook</NavTitle></Title>
            {isLoggedIn ? <UserMenu /> : <AuthNav/>} 
         </>
     )

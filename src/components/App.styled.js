@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const FormEl = styled.form`
 display: flex;
@@ -50,6 +51,16 @@ margin-left: 20px;
 export const Title = styled.h1`
 display: flex;
 margin: 0 0 0 50px;
+`
+
+export const NavTitle = styled(NavLink)`
+ outline: none;
+  text-decoration: none;
+  color: black;
+
+  :hover {
+    color: grey;
+  }
 `
 
 export const TitleContacts = styled.h2`
