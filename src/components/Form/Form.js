@@ -1,57 +1,66 @@
-// import React from "react";
-// import {useDispatch, useSelector } from "react-redux"; 
-// import { nanoid } from 'nanoid'
-// import { FormEl, Label, Button, Input } from '../App.styled'
-// import { addContact } from "redux/contacts/operations";
-// import { selectItems } from "redux/contacts/selector";
+import React from "react";
+import {useDispatch, useSelector } from "react-redux"; 
+import { nanoid } from 'nanoid'
+import { addContact } from "redux/contacts/contactsOperations";
+import { selectItems } from "redux/contacts/contactsSelectors";
+import { Input, Button, Box, Text } from "@chakra-ui/react";
 
 
-// export default function Form() {
-//   const id = nanoid();
-//   const dispatch = useDispatch();
-//   const items = useSelector(selectItems);
+export default function Form() {
+  const id = nanoid();
+  const dispatch = useDispatch();
+  const items = useSelector(selectItems);
 
-//   const handleSubmit = e => {
-//     e.preventDefault();   
-//     const data = {
-//       id: id,
-//       name: e.target.name.value.trim(),
-//       number: e.target.number.value.trim(),
-//     };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = {
+      id: id,
+      name: form.elements.name.value.trim(),
+      number: form.elements.number.value.trim(),
+    };
 
-//     if (items.find(
-//       contact => contact.name.toLowerCase() === data.name.toLowerCase()))
-//     { alert(`Contact ${data.name} ia already in phonebook`) }
-//     else {
-//       return dispatch(addContact(data));
-//           // return items; 
-//     }
-//      e.target.reset();
+    form.reset();
+    
+    if (items.find(
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()))
+    { alert(`Contact ${data.name} ia already in phonebook`) }
+    else {
+      return dispatch(addContact(data));
+    };
+  };
 
-//   };
 
-
-//    return (
-//     <FormEl onSubmit={handleSubmit}>
-//     <Label htmlFor="name">
-//       Name
-//       <Input
-//         id={id}
-//         type="text"
-//         name="name"
-//         required
-//       />
-//     </Label>
-//     <Label htmlFor="number">
-//       Phone number
-//       <Input
-//         id={id}
-//         type="tel"
-//         name="number"
-//         required
-//       />
-//     </Label>
-//      <Button type="submit">Add contact</Button>     
-//         </FormEl>
-//     ) 
-// };
+  return (
+    <Box as="form" display='block' px="4" mb='3' onSubmit={handleSubmit}>
+    <label htmlFor="name">
+     <Text> Name </Text> 
+      <Input as="input"
+        id={id}
+        type="text"
+           name="name"
+           maxWidth='3xl'
+        required
+      />
+    </label>
+    <label htmlFor="number">
+      <Text> Phone number </Text>
+      <Input as="input"
+        id={id}
+        type="tel"
+           name="number"
+           maxWidth='3xl'
+        required
+      />
+    </label>
+       <Button
+         variant='outline'
+        colorScheme='purple'
+          size='sm'
+        fontSize="sm"
+        display='block'
+         mt='2'
+          type="submit">Add contact</Button>  
+        </Box>
+    ) 
+};

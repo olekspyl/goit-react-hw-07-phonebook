@@ -1,6 +1,12 @@
+import { Heading } from "@chakra-ui/react";
+
 const HomePage = () => {
     return (
-       <p>Welcome Page</p>
+        <Heading fontSize="3xl"
+            textAlign="center"
+            mt="4"
+        >
+            To use our service, please, log in</Heading>
     )
 }
 

@@ -1,17 +1,23 @@
 import React from "react";
 import UserMenu from "components/UserMenu"
 import AuthNav from "components/AuthNav";
-import { Title, NavTitle } from "components/App.styled";
 import { useSelector } from "react-redux";
-import authSelectors from "redux/auth-form/auth-selectors";
+import authSelectors from "redux/authForm/authSelectors";
+import Navigation from "components/Navigation";
+import { Flex, Spacer, Box } from "@chakra-ui/react";
 
 const Header = () => {
     const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn)
 
     return (
         <>
-            <Title><NavTitle to="/">Phonebook</NavTitle></Title>
-           {isLoggedIn ? <UserMenu /> : <AuthNav/>} 
+            <Box px="5" pt='5' mb='3'>
+            <Flex as="header" justifyContent="flex-end" >
+            <Navigation />
+            <Spacer/>
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
+            </Flex>
+             </Box>
         </>
     )
 }

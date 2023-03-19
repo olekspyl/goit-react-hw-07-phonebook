@@ -4,13 +4,14 @@ import ContactsPage from 'pages/ContactsPage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
 import HomePage from 'pages/HomePage';
-import Header from './Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect} from 'react';
-import authSelectors from 'redux/auth-form/auth-selectors';
-import { fetchCurrentUser } from 'redux/auth-form/auth-operations';
-import { RestrictedRoute } from 'pages/RestrictedRoute';
-import { PrivateRoute } from 'pages/PrivateRoute';
+import authSelectors from 'redux/authForm/authSelectors';
+import { fetchCurrentUser } from 'redux/authForm/authOperations';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { Layout } from './Layout';
+
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,13 +23,14 @@ export default function App() {
 
   return  (!refresh && (
    <>
-      <Header/>
       <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/register" element={<RestrictedRoute component={RegisterPage} redirectTo="/contacts" />} />
-      <Route path="/login" element={<RestrictedRoute component={LoginPage} redirectTo="/contacts" />} />
-      <Route path="/contacts" element={<PrivateRoute component={ContactsPage} redirectTo="/login" />} />
-      <Route path="*" element={<HomePage />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/register" element={<RestrictedRoute component={RegisterPage} redirectTo="/contacts" />} />
+          <Route path="/login" element={<RestrictedRoute component={LoginPage} redirectTo="/contacts" />} />
+          <Route path="/contacts" element={<PrivateRoute component={ContactsPage} redirectTo="/login" />} />
+          <Route path="*" element={<HomePage />} />
+        </Route>
       </Routes>
  </>
   ))
