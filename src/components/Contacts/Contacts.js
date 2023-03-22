@@ -22,12 +22,11 @@ const Contacts = () => {
         <>
             {items.length === 0 && <p>Sorry, but you don't have any contacts</p>}
             <List px='4'>
-                <Flex justifyContent='space-between'>
             {getVisibleContacts().map(({id, name, number}) => {
                 return (
 
                     <li key={id}>
-                        <Flex alignItems='center'>
+                        <Flex alignItems='center' mb='3'>
                             <Box mr='3'>
                                 <Text fontWeight='semibold'>{name}</Text>
                                 </Box>
@@ -44,7 +43,6 @@ const Contacts = () => {
                     
                 )
             })}
-                    </Flex>
             </List>
         </>
     );
