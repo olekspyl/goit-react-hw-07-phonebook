@@ -6,6 +6,8 @@ import { contactsReducer } from "./contacts/contactsSlice";
 import { authReducer } from "./authForm/authSlice";
 
 
+
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,

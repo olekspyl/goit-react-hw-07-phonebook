@@ -55,17 +55,18 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
   
         const state = thunkAPI.getState();   
-        const persistedToken = state.auth.token;
+      const persistedToken = state.auth.token;
+      
 
-        if (!token) {
-            console.log("токен відсутній");
-            return;
-      }
+      if (!token) {
+            return thunkAPI.rejectWithValue('No valid token')
+        } 
+      
       
       token.set(persistedToken);
       
       try {
-        const response = await axios.get("/users/current");
+          const response = await axios.get("/users/current");
         return response.data;
     } catch (e) {
 return thunkAPI.rejectWithValue(e.message);

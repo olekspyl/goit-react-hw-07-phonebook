@@ -22,7 +22,6 @@ export default function App() {
   }, [dispatch])
 
   return  (!refresh && (
-   <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -32,6 +31,5 @@ export default function App() {
           <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
- </>
   ))
 };
